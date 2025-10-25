@@ -1,6 +1,9 @@
 import { Field, FieldLabel, FieldContent, FieldGroup } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import emailjs from '@emailjs/browser';
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
 
 export default function ContactMe() {
 	const [form, setForm] = useState({ name: "", email: "", description: "" });
@@ -39,19 +42,18 @@ export default function ContactMe() {
 					</div>
 				</div>
 				{/* Right: contact form */}
-				<form className="w-full" onSubmit={handleSubmit}>
+				<form className="w-full p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700" onSubmit={handleSubmit}>
 					<FieldGroup>
 						<Field>
 							<FieldLabel htmlFor="name" className="font-bold">Name</FieldLabel>
 							<FieldContent>
-								<input
+								<Input
 									id="name"
 									name="name"
 									type="text"
 									value={form.name}
 									onChange={handleChange}
 									required
-									className="border rounded px-3 py-2 w-full focus:outline-none focus:ring focus:border-amber-600"
 									placeholder="Your name"
 								/>
 							</FieldContent>
@@ -59,14 +61,13 @@ export default function ContactMe() {
 						<Field>
 							<FieldLabel htmlFor="email" className="font-bold">Email</FieldLabel>
 							<FieldContent>
-								<input
+								<Input
 									id="email"
 									name="email"
 									type="email"
 									value={form.email}
 									onChange={handleChange}
 									required
-									className="border rounded px-3 py-2 w-full focus:outline-none focus:ring focus:border-amber-600"
 									placeholder="Your email"
 								/>
 							</FieldContent>
@@ -74,24 +75,23 @@ export default function ContactMe() {
 						<Field>
 							<FieldLabel htmlFor="description" className="font-bold">Description</FieldLabel>
 							<FieldContent>
-								<textarea
+								<Textarea
 									id="description"
 									name="description"
 									value={form.description}
 									onChange={handleChange}
 									required
 									rows={4}
-									className="border rounded px-3 py-2 w-full focus:outline-none focus:ring focus:border-amber-600 resize-none"
 									placeholder="Describe your message"
 								/>
 							</FieldContent>
 						</Field>
-						<button
+						<Button
 							type="submit"
 							className="mt-4 px-6 py-2 bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors w-full"
 						>
 							Send Message
-						</button>
+						</Button>
 					</FieldGroup>
 				</form>
 			</div>

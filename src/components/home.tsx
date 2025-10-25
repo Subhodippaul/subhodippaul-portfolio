@@ -51,7 +51,7 @@ export default function Home() {
 					<div className="flex flex-col gap-6">
 						<div className="flex items-center gap-4">
 							<Button asChild>
-								<a href="#contact">Contact me</a>
+								<a href="/contact">KNOW MORE</a>
 							</Button>
 							<Button variant="ghost" asChild>
 								<a href="#skills">See skills</a>

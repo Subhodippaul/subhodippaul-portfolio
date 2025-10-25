@@ -1,22 +1,19 @@
 
-import Navbar from "@/components/navbar";
 import Home from "@/components/home";
 import ContactMe from "@/components/contact-me";
+import Layout from "@/components/layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-foreground">
-        <Navbar />
-        <Routes>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<ContactMe />} />
-        </Routes>
-      </div>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;
