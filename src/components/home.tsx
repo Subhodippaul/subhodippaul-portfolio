@@ -37,7 +37,7 @@ export default function Home() {
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 				{/* Left: details */}
 				<div className="space-y-6">
-					<p className="text-sm font-medium text-amber-600">Hello</p>
+					{/* <p className="text-sm font-medium text-amber-600">Hello</p> */}
 					<h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white flex flex-col gap-2">
 						<span className="quicksand-uniquifier">Hi, I&apos;m Subhodip Paul</span>
 						<span className="text-amber-600 flex items-center" ref={el}></span>
