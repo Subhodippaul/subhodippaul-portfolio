@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Book, Computer, Contact, Home, Projector } from "lucide-react";
+import { Book, Computer, Contact, Home } from "lucide-react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const menuItems = [
@@ -14,10 +15,30 @@ export default function Sidebar() {
 
   const isActive = (href: string) => location.pathname === href;
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-lg dark:shadow-white/10">
-      {/* Logo/Home link at top */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+    <>
+      {/* Mobile menu button */}
+      <button
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        {isMobileMenuOpen ? (
+          <span className="text-xl">✕</span>
+        ) : (
+          <span className="text-xl">☰</span>
+        )}
+      </button>
+
+      <aside className={cn(
+        "fixed left-0 top-0 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-lg dark:shadow-white/10",
+        "z-40 transition-transform duration-300 ease-in-out",
+        "w-[280px] md:w-64",
+        isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      )}>
+        {/* Logo/Home link at top */}
+        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <a href="/" className="flex items-center gap-3 text-inherit no-underline">
           <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-amber-600 text-white font-semibold">
             <strong>SP.</strong>
@@ -49,5 +70,6 @@ export default function Sidebar() {
         </ul>
       </nav>
     </aside>
+    </>
   );
 }

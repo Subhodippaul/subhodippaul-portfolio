@@ -18,8 +18,8 @@ export default function Layout() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
-      <div className="ml-64"> {/* Offset content by sidebar width */}
-        <main className="p-8">
+      <div className="transition-all duration-300 ease-in-out md:ml-64"> {/* Responsive offset */}
+        <main className="p-4 md:p-8">
           <Outlet />
         </main>
       </div>
