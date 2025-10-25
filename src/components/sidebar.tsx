@@ -1,13 +1,16 @@
 import { cn } from "@/lib/utils";
-import { Book, Computer, Contact, Home } from "lucide-react";
+import { Book, Briefcase, Computer, Contact, GraduationCap, Home } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import ProfileImg from "@/assets/profile.jpg";
 
 const menuItems = [
   { href: "/", label: "Home", icon: <Home/> },
   { href: "/skills", label: "Skills", icon: <Book/> },
   { href: "/projects", label: "Projects", icon: <Computer/> },
   { href: "/contact", label: "Contact", icon: <Contact /> },
+  { href: "/experience", label: "Experience", icon: <Briefcase/> },
+  { href: "/education", label: "Education", icon: <GraduationCap/> },
 ];
 
 export default function Sidebar() {
@@ -38,16 +41,20 @@ export default function Sidebar() {
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}>
         {/* Logo/Home link at top */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-        <a href="/" className="flex items-center gap-3 text-inherit no-underline">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-amber-600 text-white font-semibold">
-            <strong>SP.</strong>
-          </span>
-          <span className="text-lg font-medium text-gray-800 dark:text-white">
-            Subhodip Paul
-          </span>
-        </a>
-      </div>
+        <div className="p-4 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+          <a href="/" className="flex items-center gap-3 text-inherit no-underline" onClick={() => setIsMobileMenuOpen(false)}>
+            <img
+              src={ProfileImg}
+              alt="Subhodip"
+              className="h-12 w-12 rounded-full object-cover shadow-lg"
+            />
+
+            <div className="flex flex-col">
+              <span className="text-lg font-medium text-gray-800 dark:text-white">Subhodip Paul</span>
+              <span className="text-sm text-gray-500 dark:text-gray-300">Full stack developer</span>
+            </div>
+          </a>
+        </div>
 
       {/* Navigation Menu */}
       <nav className="p-4">
@@ -63,7 +70,7 @@ export default function Sidebar() {
                 )}
               >
                 <span className="text-xl">{item.icon}</span>
-                <span className="font-medium">{item.label}</span>
+                <span className={`${isActive(item.href) ? "font-bold" : "font-medium"}`}>{item.label}</span>
               </a>
             </li>
           ))}

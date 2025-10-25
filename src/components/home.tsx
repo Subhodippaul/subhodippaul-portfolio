@@ -3,7 +3,8 @@ import HeroImage from "@/assets/profile.jpg"
 import { useEffect, useRef } from "react"
 import Typed from "typed.js"
 import "./typing.css"
-import { Github, Linkedin, Instagram } from "lucide-react"
+import { Github, Linkedin, Instagram, Info, InfoIcon } from "lucide-react"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 export default function Home() {
 	const el = useRef(null)
