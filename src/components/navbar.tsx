@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import {
 	NavigationMenu,
@@ -10,15 +11,23 @@ import SwitchMode from "@/components/switch-mode"
 
 export default function Navbar() {
 	const [open, setOpen] = useState(false)
+	const location = useLocation()
 
 	const navLinks = [
-		{ href: "#home", label: "Home" },
+		{ href: "/", label: "Home" },
 		{ href: "#skills", label: "Skills" },
-		{ href: "#contact", label: "Contact" },
+		{ href: "/contact", label: "Contact" },
 	]
 
+	const isActive = (href: string) => {
+		if (href.startsWith('#')) {
+			return location.hash === href
+		}
+		return location.pathname === href
+	}
+
 		return (
-			<header className="w-full bg-gray-50 border-b border-gray-200 shadow-lg">
+			<header className="w-full bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg dark:shadow-white/10">
 			<nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 				<div className="flex h-16 items-center justify-between">
 					{/* Logo */}
@@ -41,7 +50,8 @@ export default function Navbar() {
 											href={l.href}
 											className={cn(
 												"px-3 py-2 rounded-md text-sm font-medium",
-												"text-gray-700 hover:bg-amber-100 hover:text-amber-800"
+												"text-gray-700 hover:bg-amber-100 hover:text-amber-800",
+												isActive(l.href) && "bg-amber-100 text-amber-800"
 											)}
 										>
 											{l.label}
@@ -90,7 +100,10 @@ export default function Navbar() {
 									key={l.href}
 									href={l.href}
 									onClick={() => setOpen(false)}
-									className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-amber-100"
+									className={cn(
+										"block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-amber-100",
+										isActive(l.href) && "bg-amber-100 text-amber-800"
+									)}
 								>
 									{l.label}
 								</a>
