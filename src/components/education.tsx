@@ -9,33 +9,7 @@ import {
   ItemMedia,
 } from "@/components/ui/item";
 import { ChevronDown, ChevronUp, School } from "lucide-react";
-
-const educationData = [
-  {
-    id: "secondary",
-    title: "Secondary Education",
-    school: "Ushumpure Adarsha Uchcha Vidyalaya",
-    years: "2010 - 2012",
-    degree: "Secondary Certificate",
-    branch: "General",
-  },
-  {
-    id: "higher-secondary",
-    title: "Higher Secondary",
-    school: "XYZ Higher Secondary School",
-    years: "2012 - 2014",
-    degree: "Higher Secondary Certificate",
-    branch: "Science",
-  },
-  {
-    id: "graduation",
-    title: "Graduation",
-    school: "State University",
-    years: "2014 - 2018",
-    degree: "Bachelor of Technology",
-    branch: "Computer Science",
-  },
-];
+import { APP_CONSTANTS } from "@/constants";
 
 export default function Education() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
@@ -44,10 +18,10 @@ export default function Education() {
 
   return (
     <section id="education" className="mx-auto max-w-5xl px-4 py-16">
-      <h2 className="text-2xl font-bold mb-6">Education</h2>
+      <h2 className="text-2xl font-bold mb-6">{APP_CONSTANTS.EDUCATION.TITLE}</h2>
 
       <ItemGroup>
-        {educationData.map((item) => (
+        {APP_CONSTANTS.EDUCATION.ITEMS.map((item) => (
           <Item
             variant={"outline"}
             key={item.id}
@@ -65,15 +39,15 @@ export default function Education() {
                 <button
                   type="button"
                   onClick={() => toggle(item.id)}
-                  className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 bg-amber-600 text-white hover:bg-amber-700"
+                  className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 bg-amber-600 text-white hover:bg-amber-700 transition-all duration-300"
                 >
                   {open[item.id] ? (
                     <>
-                      Close <ChevronUp className="h-4 w-4" />
+                      {APP_CONSTANTS.COMMON.CLOSE} <ChevronUp className="h-4 w-4 transition-transform duration-300" />
                     </>
                   ) : (
                     <>
-                      Open <ChevronDown className="h-4 w-4" />
+                      {APP_CONSTANTS.COMMON.OPEN} <ChevronDown className="h-4 w-4 transition-transform duration-300" />
                     </>
                   )}
                 </button>
@@ -82,31 +56,31 @@ export default function Education() {
 
             <ItemContent>
               <p className="text-sm text-muted-foreground mb-2">
-                {item.title} — click open to view details.
+                {item.title} — {APP_CONSTANTS.COMMON.CLICK_FOR_DETAILS}
               </p>
 
-              {open[item.id] && (
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${open[item.id] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="mt-2 border-t pt-3 text-sm text-gray-700 dark:text-gray-200">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                     <div>
-                      <div className="text-xs text-muted-foreground">School</div>
+                      <div className="text-xs text-muted-foreground">{APP_CONSTANTS.EDUCATION.FIELDS.SCHOOL}</div>
                       <div className="font-medium">{item.school}</div>
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground">Years</div>
+                      <div className="text-xs text-muted-foreground">{APP_CONSTANTS.EDUCATION.FIELDS.YEARS}</div>
                       <div className="font-medium">{item.years}</div>
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground">Degree</div>
+                      <div className="text-xs text-muted-foreground">{APP_CONSTANTS.EDUCATION.FIELDS.DEGREE}</div>
                       <div className="font-medium">{item.degree}</div>
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground">Branch</div>
+                      <div className="text-xs text-muted-foreground">{APP_CONSTANTS.EDUCATION.FIELDS.BRANCH}</div>
                       <div className="font-medium">{item.branch}</div>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
             </ItemContent>
           </Item>
         ))}
